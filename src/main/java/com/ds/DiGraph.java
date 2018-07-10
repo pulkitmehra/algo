@@ -38,7 +38,7 @@ public class DiGraph {
 	}
 
 	public List<WEdge> edges() {
-		return new ArrayList(adjList.values());
+		return adjList.values().stream().flatMap(List::stream).collect(Collectors.toList());
 	}
 
 	@Override

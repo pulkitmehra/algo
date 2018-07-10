@@ -1,4 +1,4 @@
-package com.algo.problems;
+package com.algo.gaph;
 
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicInteger;
