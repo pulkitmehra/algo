@@ -5,11 +5,20 @@ public class ClassUtil {
 	public static class TwDPt {
 		public int y;
 		public int x;
+		public int v;
 
 		public static TwDPt get(int y, int x) {
 			TwDPt pt = new TwDPt();
 			pt.y = y;
 			pt.x = x;
+			return pt;
+		}
+
+		public static TwDPt get(int y, int x, int v) {
+			TwDPt pt = new TwDPt();
+			pt.y = y;
+			pt.x = x;
+			pt.v=v;
 			return pt;
 		}
 
