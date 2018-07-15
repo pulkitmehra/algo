@@ -1,5 +1,6 @@
 package com.algo;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -19,6 +20,18 @@ public class HashFunctionTest {
 		});
 		System.out.println(hval);
 		
+	}
+
+	@Test
+	public void md5128BitoLong(){
+		long value = HashFunctions.md5To64Bit("test");
+		System.out.println(value);
+	}
+
+	@Test
+	public void md5128BitoBigInteger(){
+		BigInteger value = HashFunctions.md5ToBigInteger("test");
+		System.out.println(value);
 	}
 
 	@Test
