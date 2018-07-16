@@ -35,6 +35,17 @@ public class HashFunctionTest {
 	}
 
 	@Test
+	public void test4bitHashfuunction(){
+		System.out.println(HashFunctions.lowerbitHash("testme", 4));
+		System.out.println(HashFunctions.lowerbitHash("faster me", 4));
+
+		System.out.println(HashFunctions.lowerbitHash("toss", 8));
+		System.out.println(HashFunctions.lowerbitHash("faster me", 8));
+
+		System.out.println(Integer.toBinaryString((int) Math.pow(2,4)-1));
+	}
+
+	@Test
 	public void divisionMethod() {
 		String[] arr = new String[] { "abcdef", "bcdefa", "cdefab", "defabc", "absdsd", "ssdsdsa", "qDDDqwsfa",
 				"dsadeqjf", "dfadfhwjq", "dsadasd" };

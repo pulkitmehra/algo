@@ -80,6 +80,21 @@ public class HashFunctions {
         return res;
     }
 
+    public static int lowerbitHash(String key, int bit){
+        int mask=0, h=0;
+        //for 4 bit its equivalent to 0XF
+        //Can do Math.pow(2,bit)-1)
+        for(int i = 0; i< bit; i++){
+            mask = mask<<1 | 1;
+        }
+        //reduce 32 bit hash code to lower bits. ^ is to get good distribution
+        //hashcode-           11001111001011111
+        //(h >>> bit)         00001100111100101
+        //^                   11001111001011110
+        // & mask             11001111001011110 & 0000000000001111
+        return ((h=key.hashCode() * 31)  ^ (h >>> bit)) & mask ;
+    }
+
     public static BigInteger md5ToBigInteger(String key) {
         byte[] bKey = getMd5HashInBytes(key);
         //bytes to 32 bit hex to BigInteger
