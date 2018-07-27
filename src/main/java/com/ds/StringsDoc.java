@@ -36,4 +36,11 @@ public class StringsDoc {
 		
 	}
 
+	@Test
+	public void stringBuilderBacktrack(){
+		StringBuilder sb = new StringBuilder("test");
+		sb.setLength(2); // this can be used for backtracking
+		System.out.println(sb.toString());
+	}
+
 }
