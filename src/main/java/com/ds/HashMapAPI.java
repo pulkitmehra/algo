@@ -50,9 +50,12 @@ public class HashMapAPI {
 		printKeys(map);
 		map.get(4);
 		printKeys(map);
+		map.put(6,6);
 		System.out.println(getLastAccess(map));
 		map.get(5);
+		System.out.println(map);
 		System.out.println(getLastAccess(map));
+
 	}
 
 	private Integer getLastAccess(LinkedHashMap<Integer, Integer> map) {

@@ -42,13 +42,19 @@ public class StringDecomposition {
             //relatively picking 3 letter from provided start
             String sub = s.substring(frm + i * unit, frm + (i + 1) * unit);
 
+            //get number of allowed repetetion
             Long numOfFreq = collect.get(sub);
 
+            //return false if sub is not available in list of input words
             if (numOfFreq == null) {
                 return false;
             }
 
+            //if available, add it to local freq map
             freqMap.put(sub, freqMap.getOrDefault(sub,0) + 1);
+
+            //check if the count in local map is not greater than allowed repetetion
+            //this is the case when we have repetetive words like two time 'apa' 'apa' 'can'
             if (freqMap.get(sub) > numOfFreq) {
                 return false;
             }

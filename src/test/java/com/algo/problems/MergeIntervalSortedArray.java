@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MergeIntervalSortedArray {
+
+
+
 	
-	
-	public void awesomeSolution() {
+	public void awesomeSolutionButPerformance() {
 		List<Interval> intervals = null; //input
 		Interval newIn = null; //input;
 		
@@ -16,7 +18,8 @@ public class MergeIntervalSortedArray {
 		while(i < intervals.size() && intervals.get(i).start < newIn.start) {
 			i++;
 		}
-		intervals.add(i,newIn);
+		//bad solution because we are shifting the whole array
+		intervals.add(i, newIn);
 		Interval last =  null;
 		List<Interval> l = new ArrayList<>();
 		for(int j = 0; i<intervals.size(); j++) {

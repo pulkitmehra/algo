@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.ds.Heaps;
 import org.junit.Test;
 
 import com.ds.Tree;
@@ -70,6 +71,9 @@ public class TreeBasicOperations {
 		list.clear();
 		firstLargestKElements(mine, 5, list);
 		System.out.println(list);
+		list.clear();
+		firstLargestKElements2(mine, 5, list, new AtomicInteger());
+		System.out.println(list);
 	}
 
 	@Test
@@ -77,8 +81,12 @@ public class TreeBasicOperations {
 		TNode epi = Tree.bstepi();
 		Tree.print(epi);
 		List<Integer> range = new ArrayList<>();
-		range(epi, 3, 17, range);
+		rangeAlwaysInOrder(epi, 3, 17, range);
 		System.out.println(range);
+		range.clear();
+		rangeBST(epi, 3, 17, range);
+		System.out.println(range);
+
 	}
 
 	@Test
@@ -251,6 +259,17 @@ public class TreeBasicOperations {
 
 	}
 
+
+	public void firstLargestKElements2(TNode n, int k, LinkedList<Integer> list, AtomicInteger curr) {
+		if(n==null) return;
+		firstLargestKElements2(n.right,k, list,curr);
+		if(curr.incrementAndGet() <= k){
+			list.add(n.val);
+		}
+		if(curr.get() >= k) return;
+		firstLargestKElements2(n.left, k, list, curr);
+	}
+
 	public void inorder(TNode n, List<Integer> list) {
 		if (n != null) {
 			inorder(n.left, list);
@@ -259,15 +278,34 @@ public class TreeBasicOperations {
 		}
 	}
 
-	public void range(TNode n, int lo, int hi, List<Integer> list) {
+	/*
+	 * Bad complexity because it does not take advantage of BST property. It takes O(n)
+	 */
+	public void rangeAlwaysInOrder(TNode n, int lo, int hi, List<Integer> list) {
 		if (n == null)
 			return;
 		if (n.val < lo)
 			return;
-		range(n.left, lo, hi, list);
+		rangeAlwaysInOrder(n.left, lo, hi, list);
 		if (n.val <= hi) {
 			list.add(n.val);
-			range(n.right, lo, hi, list);
+			rangeAlwaysInOrder(n.right, lo, hi, list);
+		}
+	}
+
+	/*
+	 * This take advantage of BST property and traverse accordingly
+	 */
+	public void rangeBST(TNode n, int lo, int hi, List<Integer> list) {
+		if(n==null) return;
+		if(lo <= n.val && n.val <=hi){
+			rangeBST(n.left, lo, hi,list);
+			list.add(n.val);
+			rangeBST(n.right, lo, hi,list);
+		}else if (n.val > hi){
+			rangeBST(n.left, lo, hi,list);
+		}else{
+			rangeBST(n.right, lo, hi,list);
 		}
 	}
 

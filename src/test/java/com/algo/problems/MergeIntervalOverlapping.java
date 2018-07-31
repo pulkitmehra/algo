@@ -47,13 +47,13 @@ public class MergeIntervalOverlapping {
 		Interval last = null;
 		int j = l.size() - 1;
 		for (int i = j; i >= 0; i--) {
-			Interval e = l.get(i);
-			if (last == null || e.end < last.start) {
-				last = e;
+			Interval curr = l.get(i);
+			if (last == null || curr.end < last.start) {
+				last = curr;
 				swap(l, i, j--);
 			} else {
-				last.start = Math.min(last.start, e.start);
-				last.end = Math.max(last.end, e.end);
+				last.start = Math.min(last.start, curr.start);
+				last.end = Math.max(last.end, curr.end);
 			}
 		}
 		return l.subList(++j, l.size());

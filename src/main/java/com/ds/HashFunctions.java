@@ -114,4 +114,6 @@ public class HashFunctions {
         throw new RuntimeException("Hash cant be calculated");
     }
 
+    
+
 }
