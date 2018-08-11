@@ -13,7 +13,7 @@ public class WildcardMatching {
         // System.out.println(isMatch("aa","*"));
         //System.out.println(isMatch("cb","?a"));
         //System.out.println(isMatch("adceb","*a*b"));
-        System.out.println(Solution.isMatchMain("acdcb", "a*c?b"));
+        System.out.println(Solution.isMatchMain("acdcb", "a*c?cb"));
 
         //System.out.println(isMatch("","*"));
         //System.out.println(isMatch("a","a*"));

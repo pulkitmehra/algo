@@ -1,7 +1,7 @@
 package com.ds;
 
 public class ListNode {
-	int v;
+	public int val;
 	public ListNode next;
 
 	public static ListNode get(int v) {
@@ -9,7 +9,7 @@ public class ListNode {
 	}
 
 	public ListNode(int v) {
-		this.v = v;
+		this.val = val;
 	}
 
 	public static ListNode small() {
@@ -37,7 +37,7 @@ public class ListNode {
 
 	public static void print(ListNode h) {
 		while (h != null) {
-			System.out.print(h.v + ",");
+			System.out.print(h.val + ",");
 			h = h.next;
 		}
 		System.out.println();

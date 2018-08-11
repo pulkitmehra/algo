@@ -42,15 +42,15 @@ public class RabinKarpSubString {
     }
 
     public int rollingHash(int hash, char chRem, char chAd, int sLen) {
-        hash = (hash - chRem)/10;
-        hash =  hash + (chAd * (int) Math.pow(10, sLen-1));
+        hash = (hash - chRem)/26;
+        hash =  hash + (chAd * (int) Math.pow(26, sLen-1));
         return hash;
     }
 
     public int hash(String s) { //"ab", 2
         int hash = 0;
         for (int i = 0; i < s.length(); i++) { // 0, 1 < 2
-            hash += (s.charAt(i) * Math.pow(10, i)) ;
+            hash += (s.charAt(i) * Math.pow(26, i)) ;
         }
         return hash;
     }
