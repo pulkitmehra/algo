@@ -87,6 +87,9 @@ Notes:
         turnSouth();
         if(robot.move()) {
             visit(x + 1, y, robot);
+            //here robort must be at the visited cell
+            //so turn opposite and move back
+            //its backtracking 
             turnNorth();
             robot.move();
         }

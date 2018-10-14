@@ -10,9 +10,9 @@ import java.util.Random;
 
 import org.junit.Test;
 
-import com.algo.tree.TreeDS.BST;
-import com.algo.tree.TreeDS.TNode;
-import com.algo.tree.TreeDS.Tree;
+import org.comp.algo.tree.TreeDS.BST;
+import org.comp.algo.tree.TreeDS.TNode;
+import org.comp.algo.tree.TreeDS.Tree;
 
 public class TreeTest {
 

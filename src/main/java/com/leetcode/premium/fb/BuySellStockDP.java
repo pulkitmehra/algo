@@ -9,43 +9,32 @@ public class BuySellStockDP {
     @Test
     public void buyAndSellStock(){
         int[] arr = {3,2,6,5,0,3};
-        maxProfit(2, arr);
+        System.out.println( maxProfit(2, arr));
     }
 
-    public int maxProfit(int k, int[] prices) {
+    @Test
+    public void buyAndSellStock2(){
+        int[] arr = {10,22,15,75,80};
+        System.out.println( maxProfit(2, arr));
+    }
+    public int maxProfit(int k, int[] arr){
 
-        int len = prices.length;
+        int[][] tab = new int[k+1][arr.length];
 
-        if (k >= len / 2)
-            return quickSolve(prices);
+        for (int tran=1; tran < k+1; tran++){ //transaction
 
-        int[][] t = new int[k + 1][len];
+            for (int day=1; day < arr.length; day++ ){
 
-        for (int i = 1; i <= k; i++) {
-
-            int tmpMax =  -prices[0];
-
-            for (int j = 1; j < len; j++) {
-                System.out.println("old tmp "+tmpMax);
-                t[i][j] = Math.max(t[i][j - 1], prices[j] + tmpMax);
-                tmpMax =  Math.max(tmpMax, t[i - 1][j - 1] - prices[j]);
-                System.out.println("("+i+","+j+") "+ "t[i - 1][j - 1] "+t[i - 1][j - 1]+" price[j] "+prices[j]);
-                System.out.println("new tmp "+tmpMax);
-                for (int[] a : t){
-                    System.out.println(Arrays.toString(a));
+                int maxValue = 0;
+                for(int prev=1; prev< day; prev++){
+                    maxValue = Math.max(maxValue, (arr[day]-arr[prev]) + tab[tran-1][prev-1]);
                 }
-                System.out.println("------------");
+                tab[tran][day] = Math.max(maxValue, tab[tran][day-1]);
             }
         }
-        return t[k][len - 1];
+        return tab[k][arr.length-1];
     }
 
 
-    private int quickSolve(int[] prices) {
-        int len = prices.length, profit = 0;
-        for (int i = 1; i < len; i++)
-            // as long as there is a price gap, we gain a profit.
-            if (prices[i] > prices[i - 1]) profit += prices[i] - prices[i - 1];
-        return profit;
-    }
+
 }

@@ -3,6 +3,8 @@ package com.leetcode.premium.fb;
 import com.ds.Tree;
 import org.junit.Test;
 
+import java.util.List;
+
 /*
     Preorder read and write
  */
@@ -43,6 +45,7 @@ public class SerializeAndDeserializeTree {
     }
 
     Tree.TNode deserialize(String[] chars, Counter counter){
+
         if(counter.get() == chars.length) return null;
         String ch = chars[counter.get()];
         counter.incr();

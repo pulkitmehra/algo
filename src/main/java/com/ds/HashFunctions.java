@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.zip.CRC32;
 
 public class HashFunctions {
 
@@ -80,25 +81,25 @@ public class HashFunctions {
         return res;
     }
 
-    public static int lowerbitHash(String key, int bit){
-        int mask=0, h=0;
+    public static int lowerbitHash(String key, int bit) {
+        int mask = 0, h = 0;
         //for 4 bit its equivalent to 0XF
         //Can do Math.pow(2,bit)-1)
-        for(int i = 0; i< bit; i++){
-            mask = mask<<1 | 1;
+        for (int i = 0; i < bit; i++) {
+            mask = mask << 1 | 1;
         }
         //reduce 32 bit hash code to lower bits. ^ is to get good distribution
         //hashcode-           11001111001011111
         //(h >>> bit)         00001100111100101
         //^                   11001111001011110
         // & mask             11001111001011110 & 0000000000001111
-        return ((h=key.hashCode() * 31)  ^ (h >>> bit)) & mask ;
+        return ((h = key.hashCode() * 31) ^ (h >>> bit)) & mask;
     }
 
     public static BigInteger md5ToBigInteger(String key) {
         byte[] bKey = getMd5HashInBytes(key);
         //bytes to 32 bit hex to BigInteger
-        return new BigInteger(DatatypeConverter.printHexBinary(bKey),16);
+        return new BigInteger(DatatypeConverter.printHexBinary(bKey), 16);
     }
 
     public static String getMd5HashInString(String value) {
@@ -114,6 +115,29 @@ public class HashFunctions {
         throw new RuntimeException("Hash cant be calculated");
     }
 
-    
+    /**
+     * Cyclic Redundancy Check (CRC) is an error detection technique commonly used to detect any changes to raw data.
+     * CRC checksum is a short fixed length data derived from a larger block of data. If there is a change in original raw data,
+     * the computed CRC checksum will differ from the CRC checksum received from the source. This technique is used to
+     * detect data errors when a file is read from a storage system. Each file stored in the file system also has the checksum
+     * stored along with the content. If the checksum is different when calculated on the file content, we know that the file
+     * on the disk is corrupted.
+     * <p>
+     * There are differences between CRC checksums and common hash functions such as MD5 and SHA1. CRC checksums
+     * are simpler and faster to compute. However they are not cryptographically secure. Hence CRC checksums are used in
+     * data error detection while hash functions are used in encryption algorithms.
+     * <p>
+     * CRC32 algorithm returns a 32-bit checksum value from the input data. It is very easy to calculate CRC32 checksum
+     * of a given string in Java. The following example program generates CRC32 checksum using the built-in class
+     * java.util.zip.CRC32.
+     *
+     * @return
+     */
+    public long crchash(String input) {
+        CRC32 crc = new CRC32();
+        crc.update(input.getBytes());
+        return crc.getValue();
+    }
+
 
 }

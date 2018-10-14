@@ -59,7 +59,7 @@ public class DFSProblems {
 		for (int v : G.adj(u)) {
 			if (G.isWhite(v)) {
 				dfs(visited, v, u, G);
-			} else if (G.isGrey(v) && v != p) {
+			} else if (G.isGrey(v) && v != p) {//check if its not the same vertice
 				System.out.println("Cycles : (" + u + ") -> (" + v + ")");
 			}
 		}

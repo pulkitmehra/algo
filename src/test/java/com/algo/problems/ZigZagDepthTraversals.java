@@ -13,7 +13,7 @@ import org.junit.Test;
 import com.ds.Tree;
 import com.ds.Tree.TNode;
 
-public class DepthTraversals {
+public class ZigZagDepthTraversals {
 
 	@Test
 	public void treeTest() {

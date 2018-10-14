@@ -35,6 +35,15 @@ public class HashMapAPI {
 	}
 
 	@Test
+	public void linkedHashMapOrder(){
+		Map<Integer, Integer> map =new LinkedHashMap<>();
+		map.put(1,1);
+		map.put(2,2);
+		map.put(3,2);
+
+		System.out.println(map);
+	}
+	@Test
 	public void linkedhashMap() {
 		LinkedHashMap<Integer, Integer> map = new LinkedHashMap<Integer, Integer>(5, 1.0f, true) {
 			protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {

@@ -28,6 +28,7 @@ public class ConsistentHashing {
     }
 
     public void add(ServerNode n) {
+        //virtual replicas or nodes
         for (int i = 0; i < replicas; i++) {
             circle.put(hashFunction.apply(n.getName()+i), n);
         }
